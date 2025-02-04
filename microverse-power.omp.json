@@ -35,12 +35,25 @@
           "foreground": "#3A86FF",
           "powerline_symbol": "\ue0b0",
           "properties": {
-            "fetch_stash_count": true,
+            "cache_duration": "none",
+            "fetch_status": true,
             "fetch_upstream_icon": true
           },
           "style": "powerline",
-          "template": "{{ .UpstreamIcon }}{{ .HEAD }}{{ if gt .StashCount 0 }} \ueb4b {{ .StashCount }}{{ end }} ",
+          "template": "{{ .UpstreamIcon }}{{ .HEAD }}{{if .BranchStatus }} {{ .BranchStatus }}{{ end }}{{ if .Working.Changed }} \uf044 {{ .Working.String }}{{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }} |{{ end }}{{ if .Staging.Changed }} \uf046 {{ .Staging.String }}{{ end }} ",
           "type": "git"
+        },
+        {
+          "properties": {
+            "cache_duration": "none",
+            "fetch_version": true
+          },
+          "template": " \ue781 {{ if .PackageManagerIcon }}{{ .PackageManagerIcon }} {{ end }}{{ .Full }} ",
+          "background": "#242424",
+          "foreground": "#98C379",
+          "type": "node",
+          "style": "powerline",
+          "powerline_symbol": "\ue0b0"
         },
         {
           "background": "#33DD2D",
